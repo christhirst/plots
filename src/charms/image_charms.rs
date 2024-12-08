@@ -9,9 +9,11 @@ use charming::{
     series::{Candlestick, Line},
 };
 
+use crate::grpc::types::StockPoint;
+
 use super::types::Rendertype;
 
-pub fn chart() -> Chart {
+pub fn bar_chart() -> Chart {
     Chart::new()
         .x_axis(
             Axis::new()
@@ -32,22 +34,24 @@ pub fn render_image(rt: Rendertype, chart: Chart) {
     renderer.save(&chart, "./assets/chart.html").unwrap();
 }
 
-pub fn charta(dates: Vec<&str>, data: Vec<Vec<f64>>) -> Chart {
+pub fn stock_chart(dates: Vec<&str>, raw_data: Vec<StockPoint>) -> Chart {
     //let mut raw_data = SOURCE;
     //raw_data.reverse();
 
-    /* let dates: Vec<&str> = raw_data.iter().map(|row| row[0]).collect();
+    //let dates: Vec<&str> = raw_data.iter().map(|row| row[0]).collect();
     let data: Vec<Vec<f64>> = raw_data
         .iter()
         .map(|row| {
             vec![
-                row[1].parse::<f64>().unwrap_or(0.),
+                row.open, row.close, row.low,
+                row.high,
+                /* row[1].parse::<f64>().unwrap_or(0.),
                 row[2].parse::<f64>().unwrap_or(0.),
                 row[5].parse::<f64>().unwrap_or(0.),
-                row[6].parse::<f64>().unwrap_or(0.),
+                row[6].parse::<f64>().unwrap_or(0.), */
             ]
         })
-        .collect(); */
+        .collect();
 
     Chart::new()
         .legend(

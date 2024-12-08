@@ -1,6 +1,6 @@
 use tonic::transport::Server;
 
-use crate::{
+use crate::grpc::service::{
     proto::{self, plot_server::PlotServer},
     PlotsService,
 };
