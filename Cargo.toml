@@ -1,0 +1,18 @@
+[package]
+name = "plots"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+plotters = "0.3.7"
+tower = { version = "0.5.1", features = ["util"] }
+tower-http = { version = "0.6.1", features = ["fs"] }
+tonic = "0.11"
+tokio = { version = "1.0", features = ["full"] }
+axum = "0.7.9"
+prost ="0.12"
+tonic-reflection = "0.11"
+charming = "0.4.0"
+
+[build-dependencies]
+tonic-build ="0.11"

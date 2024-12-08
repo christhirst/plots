@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package plots;
+
+service Plot {
+  rpc SVG_Chart(ChartRequest) returns (SVGResponse);
+  //rpc Divide(CalculationRequest) returns (CalculationResponse);
+}
+
+
+message ChartXAxis {
+  repeated double x = 5 ;
+}
+
+message ChartYAxis {
+  repeated double open = 6 ;
+  repeated double close = 7 ;
+  repeated double low = 8 ;
+  repeated double high = 9 ;
+}
+
+
+message ChartRequest {
+  ChartXAxis x = 1 ;
+  repeated ChartYAxis y = 2 ;
+  string user_id = 3 ;
+  string group_id = 4 ;
+}
+
+message SVGResponse {
+  string  path = 1;
+  string  file = 2;
+}
+
+service Admin {
+  rpc GetRequestCount(GetCountRequest) returns (CounterResponse);
+}
+
+message GetCountRequest {}
+
+message CounterResponse { uint64 count = 1; }

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>my charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
+    <style> .container { display: flex; justify-content: center; align-items: center; } .item { margin: auto; } </style>
+  </head>
+  <body>
+      <div class="container">
+        <div class="item" id="chart" style="width: 1000px; height: 800px"></div>
+      </div>
+      
+      <script type="text/javascript">
+          
+          var chart = echarts.init(document.getElementById('chart'), null, { renderer: 'canvas' });
+          var option = {
+  "tooltip": {
+    "trigger": "axis",
+    "axisPointer": {
+      "type": "cross",
+      "animation": false,
+      "lineStyle": {
+        "color": "#376df4",
+        "width": 2.0,
+        "opacity": 1.0
+      }
+    }
+  },
+  "legend": {
+    "inactiveColor": "#777",
+    "data": [
+      {
+        "name": "日K"
+      },
+      {
+        "name": "MA5"
+      },
+      {
+        "name": "MA10"
+      },
+      {
+        "name": "MA20"
+      },
+      {
+        "name": "MA30"
+      }
+    ]
+  },
+  "grid": [
+    {
+      "bottom": 80
+    }
+  ],
+  "xAxis": [
+    {
+      "type": "category",
+      "data": [
+        "2015/12/31",
+        "2016/01/01",
+        "2015/01/02",
+        "2016/01/03",
+        "2015/01/04",
+        "2016/01/05",
+        "2015/01/06",
+        "2016/01/07"
+      ]
+    }
+  ],
+  "yAxis": [
+    {
+      "scale": true,
+      "splitLine": {
+        "show": false
+      }
+    }
+  ],
+  "dataZoom": [
+    {
+      "dataBackground": {
+        "lineStyle": {
+          "color": "#8392A5",
+          "opacity": 0.8
+        },
+        "areaStyle": {
+          "color": "#8392A5"
+        }
+      },
+      "textStyle": {
+        "color": "#8392A5"
+      },
+      "handleIcon": "path://M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z",
+      "brushSelect": true
+    }
+  ],
+  "series": [
+    {
+      "type": "candlestick",
+      "name": "Day",
+      "data": [
+        [
+          3570.47,
+          3539.18,
+          3538.35,
+          3580.6
+        ],
+        [
+          3566.73,
+          3572.88,
+          3538.11,
+          3573.68
+        ],
+        [
+          3570.47,
+          3539.18,
+          3538.35,
+          3580.6
+        ],
+        [
+          3566.73,
+          3572.88,
+          3538.11,
+          3573.68
+        ],
+        [
+          3570.47,
+          3539.18,
+          3538.35,
+          3580.6
+        ],
+        [
+          3566.73,
+          3572.88,
+          3538.11,
+          3573.68
+        ],
+        [
+          3566.73,
+          3572.88,
+          3538.11,
+          3573.68
+        ],
+        [
+          3566.73,
+          3572.88,
+          3538.11,
+          3573.68
+        ]
+      ]
+    },
+    {
+      "type": "line",
+      "name": "MA5",
+      "showSymbol": false,
+      "lineStyle": {
+        "width": 1.0
+      },
+      "smooth": 1.0,
+      "data": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        3559.4,
+        3559.4,
+        3566.1400000000003
+      ]
+    },
+    {
+      "type": "line",
+      "name": "MA10",
+      "showSymbol": false,
+      "lineStyle": {
+        "width": 1.0
+      },
+      "smooth": 1.0,
+      "data": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "type": "line",
+      "name": "MA20",
+      "showSymbol": false,
+      "lineStyle": {
+        "width": 1.0
+      },
+      "smooth": 1.0,
+      "data": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    {
+      "type": "line",
+      "name": "MA30",
+      "showSymbol": false,
+      "lineStyle": {
+        "width": 1.0
+      },
+      "smooth": 1.0,
+      "data": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ]
+    }
+  ]
+};
+          chart.setOption(option);
+      </script>
+  </body>
+</html>
