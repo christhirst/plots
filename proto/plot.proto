@@ -20,10 +20,14 @@ message YAxisData {
    double high = 9 ;
 }
 
+message Format {
+  int32 grid = 6 ;
+}
 
 message ChartRequest {
   ChartXAxis x = 1 ;
   repeated YAxisData y = 2 ;
+
   string user_id = 3 ;
   string group_id = 4 ;
 }

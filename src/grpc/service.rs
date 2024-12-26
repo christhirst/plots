@@ -1,6 +1,9 @@
 use proto::plot_server::Plot;
 
-use crate::charms::image_charms::stock_chart;
+use crate::charms::{
+    image_charms::{render_image, stock_chart},
+    types::{PlotFormat, Rendertype},
+};
 
 use super::types::Actionss;
 
@@ -22,6 +25,8 @@ impl Plot for PlotsService {
         &self,
         request: tonic::Request<proto::ChartRequest>,
     ) -> Result<tonic::Response<proto::DataResponse>, tonic::Status> {
+        let r: Actionss = request.get_ref().clone().try_into().unwrap();
+        println!("r: {:?}", r);
         // Your implementation here
         //todo!("Not yet implemented")
         let r = request.get_ref().clone();
@@ -43,10 +48,10 @@ impl Plot for PlotsService {
         let r: Actionss = request.get_ref().clone().try_into().unwrap();
         let x = r.x.unwrap();
         let x: Vec<&str> = x.iter().map(AsRef::as_ref).collect();
-        stock_chart(x, r.y.unwrap());
-
+        let chart = stock_chart(x, r.y.unwrap(), PlotFormat { grid: 6 });
+        let chart = render_image(Rendertype::HTML, chart);
         Ok(tonic::Response::new(proto::DataResponse {
-            path: "buffer/2323232.svg".to_string(),
+            path: "buffer/232.svg".to_string(),
             file: "svg".to_string(),
         }))
     }

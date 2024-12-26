@@ -19,6 +19,12 @@ pub struct YAxisData {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Format {
+    #[prost(int32, tag = "6")]
+    pub grid: i32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ChartRequest {
     #[prost(message, optional, tag = "1")]
     pub x: ::core::option::Option<ChartXAxis>,

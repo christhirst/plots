@@ -11,7 +11,7 @@ use charming::{
 
 use crate::grpc::types::StockPoint;
 
-use super::types::Rendertype;
+use super::types::{PlotFormat, Rendertype};
 
 pub fn bar_chart() -> Chart {
     Chart::new()
@@ -34,11 +34,13 @@ pub fn render_image(rt: Rendertype, chart: Chart) {
     renderer.save(&chart, "./assets/chart.html").unwrap();
 }
 
-pub fn stock_chart(dates: Vec<&str>, raw_data: Vec<StockPoint>) -> Chart {
+pub fn stock_chart(dates: Vec<&str>, raw_data: Vec<StockPoint>, format: PlotFormat) -> Chart {
     //let mut raw_data = SOURCE;
     //raw_data.reverse();
 
     //let dates: Vec<&str> = raw_data.iter().map(|row| row[0]).collect();
+    println!("dates: {:?}", dates);
+    println!("dates: {:?}", raw_data);
     let data: Vec<Vec<f64>> = raw_data
         .iter()
         .map(|row| {
@@ -52,7 +54,7 @@ pub fn stock_chart(dates: Vec<&str>, raw_data: Vec<StockPoint>) -> Chart {
             ]
         })
         .collect();
-
+    println!("data: {:?}", data);
     Chart::new()
         .legend(
             Legend::new()
@@ -73,7 +75,7 @@ pub fn stock_chart(dates: Vec<&str>, raw_data: Vec<StockPoint>) -> Chart {
                 .scale(true)
                 .split_line(SplitLine::new().show(false)),
         )
-        .grid(Grid::new().bottom(80))
+        .grid(Grid::new().bottom(200))
         .data_zoom(
             DataZoom::new()
                 .handle_icon(ICON)
