@@ -7,7 +7,7 @@ pub struct StockPoint {
     pub low: f64,
     pub high: f64,
 }
-
+#[allow(unused_variables)]
 #[derive(Clone, Debug)]
 pub struct Actionss {
     pub x: Option<Vec<String>>,

@@ -37,5 +37,6 @@ pub async fn serve() {
        let contents =
            fs::read_to_string("2323232.svg").expect("Should have been able to read the file");
 
-    println!("With text:\n{contents}");*/
+    println!("With text:\n{contents}");
+    */
 }

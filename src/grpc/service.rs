@@ -5,7 +5,7 @@ use crate::charms::image_charms::stock_chart;
 use super::types::Actionss;
 
 pub mod proto {
-    tonic::include_proto!("plots");
+    tonic::include_proto!("plots"); // The string specified here must match the proto package name
 
     pub(crate) const FILE_DESCRIPTOR_SET: &[u8] =
         tonic::include_file_descriptor_set!("plot_descriptor");
