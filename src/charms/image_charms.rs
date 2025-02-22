@@ -1,3 +1,6 @@
+use charming::datatype::{DataFrame, DataPointItem};
+use charming::df;
+use charming::element::ItemStyle;
 use charming::{component::Axis, element::AxisType, series::Bar, Chart, HtmlRenderer};
 use charming::{
     component::{DataZoom, Grid, Legend},
@@ -13,15 +16,20 @@ use crate::grpc::types::StockPoint;
 
 use super::types::{PlotFormat, Rendertype};
 
-pub fn bar_chart() -> Chart {
+//TODO barchart
+/*            df![ 120,
+    DataPointItem::new(200).item_style(ItemStyle::new().color("#a90000")),
+    150,
+    80,
+    70,
+    110,
+    130,
+] */
+pub fn bar_chart(x: Vec<&str>, y: DataFrame) -> Chart {
     Chart::new()
-        .x_axis(
-            Axis::new()
-                .type_(AxisType::Category)
-                .data(vec!["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]),
-        )
+        .x_axis(Axis::new().type_(AxisType::Category).data(x))
         .y_axis(Axis::new().type_(AxisType::Value))
-        .series(Bar::new().data(vec![120, 200, 150, 80, 70, 110, 130]))
+        .series(Bar::new().data(y))
 }
 
 pub fn render_image(rt: Rendertype, chart: Chart) {
@@ -140,3 +148,26 @@ fn calculate_ma(day_count: usize, data: &[Vec<f64>]) -> Vec<CompositeValue> {
 }
 
 static ICON: &str = "path://M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z";
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_bar_chart() {
+        let x = vec!["日K", "MA5", "MA10", "MA20", "MA30"];
+        let y = df![
+            120,
+            DataPointItem::new(200).item_style(ItemStyle::new().color("#a90000")),
+            150,
+            80,
+            70,
+            110,
+            130,
+        ];
+
+        let char = bar_chart(x, y);
+
+        render_image(Rendertype::HTML, char);
+    }
+}
